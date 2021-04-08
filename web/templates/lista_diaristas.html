@@ -1,0 +1,30 @@
+{% extends 'base.html' %}
+{% load easy_mask %}
+{% block conteudo %}
+<table class="table">
+    <thead>
+        <tr>
+            <th>#</th>
+            <th>Nome</th>
+            <th>Email</th>
+            <th>CEP</th>
+            <th>Ações</th>
+        </tr>
+    </thead>
+    <tbody>
+        {% for diarista in diaristas %}
+            <tr>
+                <td>{{diarista.id}}</td>
+                <td>{{diarista.nome_completo}}</td>
+                <td>{{diarista.email}}</td>
+                <td>{{diarista.cep | cep}}</td>
+                <td>
+                    <a href="{% url 'editar_diarista' diarista.id %}">Editar</a>
+                    <a href="{% url 'remover_diarista' diarista.id %}">Remover</a>
+                </td>
+            </tr>
+        {% endfor %}
+    </tbody>
+</table>
+<a href="{% url 'cadastrar_diarista' %}" class="btn btn-primary">Cadastrar</a>
+{% endblock conteudo %}
