@@ -39,8 +39,12 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
     'crispy_forms',
     'easy_mask',
-    'web'
+    'corsheaders',
+    'web',
+    'api'
 ]
+
+CORS_ALLOW_ALL_ORIGINS = True
 
 CRISPY_TEMPLATE_PACK = 'bootstrap4'
 
