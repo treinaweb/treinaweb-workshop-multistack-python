@@ -22,10 +22,13 @@ def listar_diaristas(request):
 
 def editar_diarista(request, diarista_id):
     diarista = Diarista.objects.get(id=diarista_id)
-    form_diarista = diarista_form.DiaristaForm(request.POST or None, instance=diarista)
-    if form_diarista.is_valid():
-        form_diarista.save()
-        return redirect('listar_diaristas')
+    if request.method == "POST":
+        form_diarista = diarista_form.DiaristaForm(request.POST or None, request.FILES, instance=diarista)
+        if form_diarista.is_valid():
+            form_diarista.save()
+            return redirect('listar_diaristas')
+    else:
+        form_diarista = diarista_form.DiaristaForm(instance=diarista)
     return render(request, 'form_diarista.html', {'form_diarista': form_diarista})
 
 
